@@ -4,6 +4,7 @@ import { getDateInTimezone, getDaysBetween } from '../timezone.js';
 /**
  * Generate Goal Countdown Wallpaper
  * Shows countdown to a specific goal date with circular progress
+ * Leaves space at top for iPhone clock/date
  */
 export function generateGoalCountdown(options) {
     const {
@@ -13,7 +14,8 @@ export function generateGoalCountdown(options) {
         accentColor,
         timezone,
         goalDate,
-        goalName = 'Goal'
+        goalName = 'Goal',
+        clockHeight = 0.18
     } = options;
 
     // Get current date in user's timezone
@@ -38,21 +40,23 @@ export function generateGoalCountdown(options) {
     const daysElapsed = totalDays - daysRemaining;
     const progress = Math.min(1, daysElapsed / totalDays);
 
+    // Leave space for clock (with extra padding)
+    const clockSpace = height * (clockHeight + 0.05);
+
     let content = '';
 
     // Background
     content += rect(0, 0, width, height, parseColor(bgColor));
 
-    // Center point
+    // Center point (adjusted for clock)
     const centerX = width / 2;
-    const centerY = height * 0.45;
+    const centerY = clockSpace + (height - clockSpace) * 0.4;
 
     // Circular progress
-    const radius = width * 0.25;
-    const strokeWidth = width * 0.03;
+    const radius = width * 0.28;
+    const strokeWidth = width * 0.035;
 
     // Background circle
-    content += circle(centerX, centerY, radius, 'none');
     content += `<circle cx="${centerX}" cy="${centerY}" r="${radius}" stroke="${colorWithAlpha('#ffffff', 0.1)}" stroke-width="${strokeWidth}" fill="none" />`;
 
     // Progress arc
@@ -62,17 +66,17 @@ export function generateGoalCountdown(options) {
     }
 
     // Days number
-    content += text(centerX, centerY - height * 0.02, daysRemaining.toString(), {
+    content += text(centerX, centerY - height * 0.015, daysRemaining.toString(), {
         fill: parseColor(accentColor),
-        fontSize: width * 0.18,
+        fontSize: width * 0.2,
         fontWeight: '700',
         textAnchor: 'middle',
         dominantBaseline: 'middle'
     });
 
-    // "days" label
-    content += text(centerX, centerY + height * 0.06, daysRemaining === 1 ? 'day' : 'days', {
-        fill: colorWithAlpha('#ffffff', 0.6),
+    // "days left" label
+    content += text(centerX, centerY + height * 0.08, daysRemaining === 1 ? 'day left' : 'days left', {
+        fill: colorWithAlpha('#ffffff', 0.5),
         fontSize: width * 0.04,
         fontWeight: '400',
         textAnchor: 'middle',
@@ -80,7 +84,8 @@ export function generateGoalCountdown(options) {
     });
 
     // Goal name
-    content += text(centerX, height * 0.72, decodeURIComponent(goalName), {
+    const decodedGoalName = decodeURIComponent(goalName);
+    content += text(centerX, height * 0.75, decodedGoalName, {
         fill: '#ffffff',
         fontSize: width * 0.05,
         fontWeight: '600',
@@ -94,35 +99,17 @@ export function generateGoalCountdown(options) {
         day: 'numeric',
         year: 'numeric'
     });
-    content += text(centerX, height * 0.78, dateStr, {
+    content += text(centerX, height * 0.77, dateStr, {
         fill: colorWithAlpha('#ffffff', 0.4),
-        fontSize: width * 0.03,
+        fontSize: width * 0.028,
         fontWeight: '400',
         textAnchor: 'middle',
         dominantBaseline: 'middle'
     });
 
-    // Motivational text based on days remaining
-    let motivation = '';
-    if (daysRemaining === 0) {
-        motivation = "Today's the day! 🎯";
-    } else if (daysRemaining <= 7) {
-        motivation = 'Almost there! Final stretch.';
-    } else if (daysRemaining <= 30) {
-        motivation = 'Less than a month to go!';
-    } else if (daysRemaining <= 100) {
-        motivation = 'Making great progress.';
-    } else {
-        motivation = 'Stay focused. Every day counts.';
-    }
-
-    content += text(centerX, height * 0.88, motivation, {
-        fill: colorWithAlpha('#ffffff', 0.3),
-        fontSize: width * 0.025,
-        fontWeight: '400',
-        textAnchor: 'middle',
-        dominantBaseline: 'middle'
-    });
+    // Progress percentage (Commented out/Removed as per user request)
+    // const progressPercent = Math.round(progress * 100);
+    // content += text(centerX, height * 0.85, `${progressPercent}% complete`, { ... });
 
     return createSVG(width, height, content);
 }
