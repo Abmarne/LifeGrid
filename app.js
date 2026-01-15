@@ -216,6 +216,15 @@ function bindEvents() {
         updateURL();
     });
 
+    // Make color wrappers clickable
+    $$('.color-input-wrapper').forEach(wrapper => {
+        wrapper.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'INPUT') {
+                wrapper.querySelector('input[type="color"]').click();
+            }
+        });
+    });
+
     // Color Presets
     elements.presetBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -412,12 +421,32 @@ function drawYearPreview(ctx, width, height) {
     const percent = Math.round((dayOfYear / totalDays) * 100);
     const statsY = startY + gridHeight + (height * 0.03);
 
-    // Grey color like the dots (rgba 255,255,255,0.5)
+    // Split text rendering for multi-style
+    const text1 = `${daysLeft} days left`;
+    const text2 = ` · ${percent}% complete`;
+
+    // Configure fonts
+    const font1 = `500 ${width * 0.032}px Inter, sans-serif`;
+    const font2 = `500 ${width * 0.026}px "SF Mono", "Menlo", "Courier New", monospace`;
+
+    ctx.font = font1;
+    const w1 = ctx.measureText(text1).width;
+    ctx.font = font2;
+    const w2 = ctx.measureText(text2).width;
+
+    const totalW = w1 + w2;
+    const x = (width - totalW) / 2;
+
+    // Draw Part 1 (Accent)
+    ctx.fillStyle = state.accentColor;
+    ctx.font = font1;
+    ctx.textAlign = 'left';
+    ctx.fillText(text1, x, statsY);
+
+    // Draw Part 2 (Grey)
     ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-    // Monospace font
-    ctx.font = `500 ${width * 0.026}px "SF Mono", "Menlo", "Courier New", monospace`;
-    ctx.textAlign = 'center';
-    ctx.fillText(`${daysLeft} days left · ${percent}% complete`, width / 2, statsY);
+    ctx.font = font2;
+    ctx.fillText(text2, x + w1, statsY);
 }
 
 function drawLifePreview(ctx, width, height) {
@@ -483,12 +512,31 @@ function drawLifePreview(ctx, width, height) {
     const percent = Math.round((weeksLived / totalWeeks) * 100);
     const statsY = startY + gridHeight + (height * 0.035);
 
-    // Grey color like the dots (rgba 255,255,255,0.5)
+    // Split text rendering
+    const text1 = `${weeksLeft.toLocaleString()} weeks left`;
+    const text2 = ` · ${percent}% lived`;
+
+    const font1 = `500 ${width * 0.026}px Inter, sans-serif`; // Smaller for life cal (52 cols)
+    const font2 = `500 ${width * 0.022}px "SF Mono", "Menlo", "Courier New", monospace`;
+
+    ctx.font = font1;
+    const w1 = ctx.measureText(text1).width;
+    ctx.font = font2;
+    const w2 = ctx.measureText(text2).width;
+
+    const totalW = w1 + w2;
+    const x = (width - totalW) / 2;
+
+    // Draw Part 1 (Accent)
+    ctx.fillStyle = state.accentColor;
+    ctx.font = font1;
+    ctx.textAlign = 'left';
+    ctx.fillText(text1, x, statsY);
+
+    // Draw Part 2 (Grey)
     ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-    // Monospace font
-    ctx.font = `500 ${width * 0.024}px "SF Mono", "Menlo", "Courier New", monospace`;
-    ctx.textAlign = 'center';
-    ctx.fillText(`${weeksLeft.toLocaleString()} weeks left · ${percent}% lived`, width / 2, statsY);
+    ctx.font = font2;
+    ctx.fillText(text2, x + w1, statsY);
 }
 
 function drawGoalPreview(ctx, width, height) {
