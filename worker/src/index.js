@@ -26,6 +26,29 @@ async function initializeWasm() {
     }
 }
 
+let fontBuffers = [];
+
+async function loadFonts() {
+    if (fontBuffers.length > 0) return;
+
+    try {
+        const fonts = [
+            'https://github.com/rsms/inter/raw/master/docs/font-files/Inter-Regular.woff2',
+            'https://github.com/rsms/inter/raw/master/docs/font-files/Inter-Medium.woff2',
+            'https://github.com/rsms/inter/raw/master/docs/font-files/Inter-SemiBold.woff2',
+            'https://github.com/rsms/inter/raw/master/docs/font-files/Inter-Bold.woff2'
+        ];
+
+        const responses = await Promise.all(fonts.map(url => fetch(url)));
+        const buffers = await Promise.all(responses.map(res => res.arrayBuffer()));
+
+        fontBuffers = buffers.map(buffer => new Uint8Array(buffer));
+        console.log('Fonts loaded successfully');
+    } catch (e) {
+        console.error('Failed to load fonts:', e);
+    }
+}
+
 export default {
     async fetch(request, env, ctx) {
         const url = new URL(request.url);
@@ -106,7 +129,7 @@ async function handleGenerate(request, url, corsHeaders, ctx) {
         }
 
         // Convert SVG to PNG using resvg
-        await initializeWasm();
+        await Promise.all([initializeWasm(), loadFonts()]);
 
         const resvg = new Resvg(svg, {
             fitTo: {
@@ -115,6 +138,7 @@ async function handleGenerate(request, url, corsHeaders, ctx) {
             font: {
                 loadSystemFonts: false,
                 defaultFontFamily: 'Inter',
+                fontBuffers: fontBuffers // Pass the loaded font buffers
             }
         });
 
