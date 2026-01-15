@@ -1,18 +1,87 @@
 # LifeGrid
 
-> Time, visualized.
+**Premium Dynamic Wallpapers for iOS Lock Screens.**
 
-Dynamic wallpapers that track your year, life, and goals. Updated daily, automatically.
+LifeGrid generates high-resolution, data-driven wallpapers that help you visualize your time, goals, and life progress directly on your iPhone lock screen. Designed to sit perfectly between the time, widgets, and dynamic island.
 
-![LifeGrid](https://via.placeholder.com/800x400/000000/FFFFFF?text=LifeGrid)
+## Tech Stack
 
-## ✨ Features
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)
+![Zod](https://img.shields.io/badge/zod-%233068b7.svg?style=for-the-badge&logo=zod&logoColor=white)
 
-- **Year Progress** – See every day of the year as a grid
-- **Life Calendar** – Every week of your life as a dot
-- **Goal Countdown** – Count down to what matters
-- **Timezone-aware** – Handles DST automatically
-- **Customizable** – Black/white theme with accent colors
+## Features
+
+- **Dynamic Visuals**
+  - **Year Progress**: 365 dots representing every day of the year. Active day highlighted.
+  - **Life Calendar**: Every week of your life (up to 80+ years) in a single grid.
+  - **Goal Countdown**: Circular progress tracker for your biggest targets.
+
+- **Pixel-Perfect**
+  - Native resolution generation for all modern iPhones (13 mini to 16 Pro Max).
+  - Smart layout adjustments for Notch vs Dynamic Island devices.
+  - Retina-quality live previews (+10% contrast boost filter).
+
+- **Architecture**
+  - **Frontend**: Lightweight Vanilla JS & CSS. No frameworks, instant load.
+  - **Backend**: Serverless Cloudflare Worker with Rust-based SVG rendering (`resvg`).
+  - **Security**: Strict Zod schema validation & XSS protection.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js & npm
+- Cloudflare Wrangler CLI (`npm install -g wrangler`)
+
+### Backend Setup (Cloudflare Worker)
+
+Navigate to the worker directory and install dependencies:
+
+```bash
+cd worker
+npm install
+```
+
+Run locally:
+
+```bash
+npx wrangler dev
+```
+
+Deploy to Cloudflare:
+
+```bash
+npx wrangler deploy
+```
+
+### Frontend Setup
+
+The frontend is a static site. You can serve it with any static file server.
+
+```bash
+# From project root
+npx serve .
+```
+
+Open `http://localhost:3000` to see the wallpaper generator.
+
+## Security
+
+All inputs are sanitized and validated before processing:
+- **Zod Schema**: Ensures dimensions, colors, and dates strictly adhere to safe formats.
+- **Output Encoding**: Text inputs are XML-escaped to prevent injection.
+- **Resource Limits**: Max dimensions and memory usage capped to prevent DoS.
+
+## Supported Devices
+
+Automatically adjusts for:
+- **Dynamic Island**: iPhone 14 Pro/Pro Max, 15 series, 16 series.
+- **Notch**: iPhone 13 series, 14/14 Plus.
+- **Compact**: iPhone 13 mini.
+
 
 ## 📁 Project Structure
 
@@ -37,23 +106,7 @@ lifegrid/
             └── goal.js # Goal countdown (circle)
 ```
 
-## 🚀 Quick Start
 
-### Frontend
-```bash
-# Just open in browser
-open index.html
-```
-
-### Backend
-```bash
-cd worker
-npm install
-npx wrangler dev      # Local development
-npx wrangler deploy   # Deploy to Cloudflare
-```
-
-After deploying, update `WORKER_URL` in `app.js`.
 
 ## 🔗 API Reference
 
@@ -82,6 +135,29 @@ GET /generate?country=us&type=year&bg=000000&accent=FFFFFF&width=1179&height=255
    - `Get Contents of URL` → paste URL
    - `Set Wallpaper` → Lock Screen
 4. Automate to run daily at 6 AM
+
+
+## Contribution
+
+Contributions are welcome! If you have ideas for new features or bug fixes, please follow these steps:
+
+1.  Fork the repository.
+2.  Create a new branch: `git checkout -b feature/your-feature-name`.
+3.  Make your changes and commit them: `git commit -m 'Add some feature'`.
+4.  Push to the branch: `git push origin feature/your-feature-name`.
+5.  Submit a pull request.
+
+Please ensure your code follows the existing style and includes appropriate tests.
+
+## Author
+[![GitHub](https://img.shields.io/badge/GitHub-aradhyacp-181717?style=for-the-badge&logo=github)](https://github.com/aradhyacp)
+
+
+## ⭐ Star This Repo
+
+If you find this project useful, please consider giving it a star! It helps others discover the project.
+
+**License**: MIT
 
 ---
 
