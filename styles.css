@@ -1142,7 +1142,7 @@ body {
 
 .step-connector.vertical {
   width: 1px;
-  height: 40px;
+  height: 50px;
   margin: 0 auto;
 }
 
@@ -1174,37 +1174,10 @@ body {
   margin-bottom: 0;
 }
 
-/* Flow connector line */
-.flow-connector {
-  display: flex;
-  justify-content: center;
-  padding: var(--space-2) 0;
-}
-
-.flow-connector svg {
-  width: 60px;
-  height: 50px;
-}
-
-.flow-line {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.4);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-dasharray: 8 4;
-  animation: dashFlow 1.5s linear infinite;
-}
-
-@keyframes dashFlow {
-  to {
-    stroke-dashoffset: -24;
-  }
-}
-
 /* Step 4 Container - Full Width Sub-cards */
 .step-4-container {
   max-width: 800px;
-  margin: 0 auto var(--space-6);
+  margin: var(--space-5) auto var(--space-6);
   padding: var(--space-6);
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--border);
