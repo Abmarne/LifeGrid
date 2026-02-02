@@ -21,14 +21,6 @@
   --gray-900: #171717;
   --gray-950: #0A0A0A;
 
-  /* Default to Dark Mode colors (based on your screenshot) */
-  --bg-color: #000000;
-  --text-color: #ffffff;
-  --button-hover: #333333;
-  
-  /* Smooth transition for the whole page */
-  --transition-speed: 0.3s;
-
   /* Accent - can be overridden */
   --accent: #FFFFFF;
 
