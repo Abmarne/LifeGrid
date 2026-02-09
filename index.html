@@ -56,7 +56,13 @@
         <a href="#setup" class="nav-link" data-i18n="nav.setup">Setup</a>
       </div>
       <div class="nav-buttons">
-        <button class="nav-btn" data-i18n="nav.themeSwitch">Theme switch</button>
+        <!-- <button class="nav-btn" data-i18n="nav.themeSwitch">Theme switch</button> -->
+         <button id="theme-toggle" class="nav-btn" aria-label="Toggle theme">
+          <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
         <div class="lang-switch" id="lang-switch">
           <button class="nav-btn lang-btn" id="lang-toggle" aria-haspopup="listbox" aria-expanded="false"
             data-i18n-attr="aria-label:nav.language">
