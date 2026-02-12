@@ -138,6 +138,58 @@ export const devices = [
         clockHeight: 0.10
     },
 
+    // Popular recent Android flagships (Samsung Galaxy S23 series)
+    {
+        name: "Samsung Galaxy S23 Ultra",
+        width: 1440,
+        height: 3088,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Samsung Galaxy S23+",
+        width: 1080,
+        height: 2340,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Samsung Galaxy S23",
+        width: 1080,
+        height: 2340,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+
+    // Popular recent Pixels (Pixel 8 series)
+    {
+        name: "Google Pixel 8 Pro",
+        width: 1344,
+        height: 2992,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Google Pixel 8",
+        width: 1080,
+        height: 2400,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Google Pixel 8a",
+        width: 1080,
+        height: 2400,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+
     // ===== iPad =====
     {
         name: "iPad Pro 13\"",
@@ -159,6 +211,38 @@ export const devices = [
         name: "iPad Air",
         width: 1640,
         height: 2360,
+        category: "iPad",
+        notchHeight: 0,
+        clockHeight: 0.05
+    },
+    {
+        name: "iPad Pro 12.9\"",
+        width: 2048,
+        height: 2732,
+        category: "iPad",
+        notchHeight: 0,
+        clockHeight: 0.05
+    },
+    {
+        name: "iPad 10.9\" (10th gen)",
+        width: 1640,
+        height: 2360,
+        category: "iPad",
+        notchHeight: 0,
+        clockHeight: 0.05
+    },
+    {
+        name: "iPad 10.2\" (9th gen)",
+        width: 1620,
+        height: 2160,
+        category: "iPad",
+        notchHeight: 0,
+        clockHeight: 0.05
+    },
+    {
+        name: "iPad mini 8.3\" (6th gen)",
+        width: 1488,
+        height: 2266,
         category: "iPad",
         notchHeight: 0,
         clockHeight: 0.05
