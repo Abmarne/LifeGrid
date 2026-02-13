@@ -190,6 +190,144 @@ export const devices = [
         clockHeight: 0.10
     },
 
+    // ===== OnePlus =====
+    {
+        name: "OnePlus 12R",
+        width: 1264,
+        height: 2780,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "OnePlus Nord 4",
+        width: 1240,
+        height: 2772,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "OnePlus Nord 3 / Nord CE 3",
+        width: 1080,
+        height: 2412,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+
+    // ===== Oppo =====
+    {
+        name: "Oppo Reno 11 / Reno 11 Pro",
+        width: 1080,
+        height: 2412,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Oppo F25 Pro / Reno 10",
+        width: 1080,
+        height: 2412,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Oppo A79 / A78",
+        width: 1080,
+        height: 2400,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+
+    // ===== Vivo =====
+    {
+        name: "Vivo V30 / V30 Pro",
+        width: 1080,
+        height: 2412,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Vivo V29 / Y200",
+        width: 1080,
+        height: 2400,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+
+    // ===== Xiaomi & Redmi =====
+    {
+        name: "Xiaomi 14 / 14 Pro",
+        width: 1200,
+        height: 2670,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Redmi Note 13 Pro / Pro+",
+        width: 1220,
+        height: 2712,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Redmi Note 13 / Note 12",
+        width: 1080,
+        height: 2460,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Poco X6 / X6 Pro",
+        width: 1220,
+        height: 2712,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Redmi 13C / 12C",
+        width: 720,
+        height: 1600,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+
+    // ===== Realme =====
+    {
+        name: "Realme 12 Pro / 12 Pro+",
+        width: 1080,
+        height: 2412,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Realme C55 / C53 / Narzo 60",
+        width: 1080,
+        height: 2400,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+    {
+        name: "Realme 11 / Narzo 50",
+        width: 1080,
+        height: 2412,
+        category: "Android",
+        notchHeight: 0.04,
+        clockHeight: 0.10
+    },
+
     // ===== iPad =====
     {
         name: "iPad Pro 13\"",
